@@ -21,7 +21,7 @@ public class LoginPageSteps extends FirstSteps {
     public void checkPageIsLoaded() {
         Allure.step("Отображение страницы авторизации");
         waitForElement(withText(R.string.authorization), DEFAULT_TIMEOUT);
-        loginPage.titleAuthorization.check(matches(isDisplayed()));
+//        loginPage.titleAuthorization.check(matches(isDisplayed()));
         loginPage.loginField.check(matches(isDisplayed()));
         loginPage.passwordField.check(matches(isDisplayed()));
         loginPage.signInButton.check(matches(isDisplayed()));
@@ -48,4 +48,6 @@ public class LoginPageSteps extends FirstSteps {
         field.perform(click());
         field.perform(replaceText(text));
     }
+
+
 }

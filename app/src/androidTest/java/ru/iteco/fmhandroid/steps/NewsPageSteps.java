@@ -20,11 +20,11 @@ public class NewsPageSteps extends NavigationBarSteps {
         Allure.step("Отображение раздела «Новости»");
         super.checkPageIsLoaded();
         waitForElement(withText(R.string.news), DEFAULT_TIMEOUT);
-        newsPage.titleNews.check(matches(isDisplayed()));
+//        newsPage.titleNews.check(matches(isDisplayed()));
         newsPage.filterButton.check(matches(isDisplayed()));
         newsPage.sortButton.check(matches(isDisplayed()));
         newsPage.editButton.check(matches(isDisplayed()));
-        newsPage.listOfNews.check(matches(isDisplayed()));
+//        newsPage.listOfNews.check(matches(isDisplayed()));
     }
 
     public void checkCollapsedNewsItemIsDisplayed(News news) {

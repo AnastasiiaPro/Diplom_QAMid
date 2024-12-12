@@ -1,6 +1,7 @@
 package ru.iteco.fmhandroid.tests.hospis;
 
 import static ru.iteco.fmhandroid.testdata.FormatTestData.TODAY;
+import static ru.iteco.fmhandroid.testdata.FormatTestData.TOMORROW;
 import static ru.iteco.fmhandroid.testdata.News.TODAY_NEWS;
 import static ru.iteco.fmhandroid.testdata.News.TOMORROW_NEWS;
 import static ru.iteco.fmhandroid.testdata.User.REGISTERED_USER;
@@ -93,6 +94,10 @@ public class NewsPageTest extends FirstTest {
         newsPageSteps.checkCollapsedNewsItemIsNotExists(TOMORROW_NEWS);
         newsPageSteps.goToControlPanel();
         controlPanelPageSteps.checkPageIsLoaded();
+        controlPanelPageSteps.goToFilters();
+        filtersPageSteps.checkNewsFilterPageIsLoaded();
+        filtersPageSteps.fillDateFields(TOMORROW, TOMORROW);
+        filtersPageSteps.clickFilterButton();
         controlPanelPageSteps.clickDeleteNewsButton(TOMORROW_NEWS);
         controlPanelPageSteps.checkCollapsedNewsItemIsNotExists(TOMORROW_NEWS);
     }

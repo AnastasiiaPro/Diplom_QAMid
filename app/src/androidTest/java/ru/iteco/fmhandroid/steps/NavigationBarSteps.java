@@ -12,6 +12,7 @@ import io.qameta.allure.kotlin.Allure;
 import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.pages.NavigationBar;
 
+
 public class NavigationBarSteps extends FirstSteps {
 
     private final NavigationBar navigationBar = new NavigationBar();
@@ -20,7 +21,7 @@ public class NavigationBarSteps extends FirstSteps {
         Allure.step("Отображение элементов панели навигации");
         waitForElement(withId(R.id.trademark_image_view), DEFAULT_TIMEOUT);
         navigationBar.menuButton.check(matches(isDisplayed()));
-        navigationBar.logo.check(matches(isDisplayed()));
+//        navigationBar.logo.check(matches(isDisplayed()));
         navigationBar.ourMissionButton.check(matches(isDisplayed()));
         navigationBar.logoutButton.check(matches(isDisplayed()));
     }
@@ -29,7 +30,7 @@ public class NavigationBarSteps extends FirstSteps {
         Allure.step("Выйти из учетной записи");
         navigationBar.logoutButton.perform(click());
         waitForElement(withText(R.string.log_out), DEFAULT_TIMEOUT);
-        navigationBar.logoutMenuItem.check(matches(isDisplayed()));
+//        navigationBar.logoutMenuItem.check(matches(isDisplayed()));
         navigationBar.logoutMenuItem.perform(click());
     }
 

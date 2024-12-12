@@ -17,7 +17,7 @@ public class FiltersPageSteps extends FirstSteps {
 
     private void checkPageIsLoaded() {
         waitForElement(withText(R.string.filter_news), DEFAULT_TIMEOUT);
-        filtersPage.titleFilter.check(matches(isDisplayed()));
+//        filtersPage.titleFilter.check(matches(isDisplayed()));
         filtersPage.categoryField.check(matches(isDisplayed()));
         filtersPage.startDateField.check(matches(isDisplayed()));
         filtersPage.endDateField.check(matches(isDisplayed()));

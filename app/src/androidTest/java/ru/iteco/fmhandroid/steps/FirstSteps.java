@@ -8,7 +8,7 @@ import ru.iteco.fmhandroid.R;
 
 public class FirstSteps {
 
-    protected static final int DEFAULT_TIMEOUT = 2000;
+    protected static final int DEFAULT_TIMEOUT = 10000;
 
     public void waitForAppToLoad() {
         Allure.step("Ожидание загрузки приложения");

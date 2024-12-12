@@ -19,6 +19,12 @@ public class ControlPanelPage extends NavigationBar {
     public ViewInteraction titleControlPanel = onView(withText(R.string.news_control_panel));
     public ViewInteraction listOfNews = onView(withId(R.id.news_list_recycler_view));
 
+    public ViewInteraction getTitle(String title) {
+        return onView(allOf(
+                withText(R.string.news_control_panel),
+                withParent(withChild(withText(title)))));
+    }
+
     public ViewInteraction cancelButton = onView(withText(R.string.cancel));
     public ViewInteraction okButton = onView(withText(R.string.fragment_positive_button));
 
@@ -67,9 +73,15 @@ public class ControlPanelPage extends NavigationBar {
                 withParent(withChild(withText(title)))));
     }
 
-    public ViewInteraction getNewsStatus(String title) {
+    public ViewInteraction getNewsActiveStatus(String title) {
         return onView(allOf(
-                withId(R.id.news_item_published_text_view),
+                withText(R.string.news_control_panel_active),
+                withParent(withChild(withText(title)))));
+    }
+
+    public ViewInteraction getNewsNotActiveStatus(String title) {
+        return onView(allOf(
+                withText(R.string.news_control_panel_not_active),
                 withParent(withChild(withText(title)))));
     }
 }

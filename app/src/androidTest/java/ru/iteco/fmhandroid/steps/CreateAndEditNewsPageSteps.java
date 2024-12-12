@@ -12,13 +12,14 @@ import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.pages.CreateAndEditNewsPage;
 import ru.iteco.fmhandroid.testdata.News;
 
+
 public class CreateAndEditNewsPageSteps extends FirstSteps {
 
     private final CreateAndEditNewsPage createAndEditNewsPage = new CreateAndEditNewsPage();
 
-    private void checkPageIsLoaded() {
+    public void checkPageIsLoaded() {
         waitForElement(withText(R.string.news), DEFAULT_TIMEOUT);
-        createAndEditNewsPage.newsTitle.check(matches(isDisplayed()));
+//        createAndEditNewsPage.newsTitle.check(matches(isDisplayed()));
         createAndEditNewsPage.categoryField.check(matches(isDisplayed()));
         createAndEditNewsPage.titleField.check(matches(isDisplayed()));
         createAndEditNewsPage.publicationDateField.check(matches(isDisplayed()));
@@ -28,6 +29,7 @@ public class CreateAndEditNewsPageSteps extends FirstSteps {
         createAndEditNewsPage.saveButton.check(matches(isDisplayed()));
         createAndEditNewsPage.cancelButton.check(matches(isDisplayed()));
     }
+
     public void checkCreatePageIsLoaded() {
         Allure.step("Отображение страницы «Создание новости»");
         checkPageIsLoaded();

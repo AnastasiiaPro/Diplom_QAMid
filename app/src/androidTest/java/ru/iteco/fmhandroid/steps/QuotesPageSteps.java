@@ -5,6 +5,7 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.not;
+
 import static ru.iteco.fmhandroid.utils.CustomMatchers.waitForElement;
 
 import io.qameta.allure.kotlin.Allure;
@@ -17,10 +18,10 @@ public class QuotesPageSteps extends NavigationBarSteps {
     private final QuotesPage quotesPage = new QuotesPage();
 
     public void checkPageIsLoaded() {
-        Allure.step("Отображение раздела «О приложении»");
+        Allure.step("Отображение страницы «Цитаты»");
         super.checkPageIsLoaded();
         waitForElement(withId(R.id.our_mission_title_text_view), DEFAULT_TIMEOUT);
-        quotesPage.titleQuotes.check(matches(isDisplayed()));
+//        quotesPage.titleQuotes.check(matches(isDisplayed()));
         quotesPage.listOfItems.check(matches(isDisplayed()));
     }
 

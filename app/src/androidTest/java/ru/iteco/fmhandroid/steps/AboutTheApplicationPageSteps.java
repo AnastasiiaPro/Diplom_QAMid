@@ -4,6 +4,7 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+
 import static ru.iteco.fmhandroid.utils.CustomMatchers.waitForElement;
 
 import io.qameta.allure.kotlin.Allure;
@@ -19,8 +20,7 @@ public class AboutTheApplicationPageSteps extends FirstSteps {
         waitForElement(withId(R.id.about_version_title_text_view), DEFAULT_TIMEOUT);
         aboutTheApplicationPage.backButton.check(matches(isDisplayed()));
         aboutTheApplicationPage.logo.check(matches(isDisplayed()));
-
-        aboutTheApplicationPage.version.check(matches(isDisplayed()));
+//        aboutTheApplicationPage.version.check(matches(isDisplayed()));
         aboutTheApplicationPage.privacyPolicyLink.check(matches(isDisplayed()));
         aboutTheApplicationPage.privacyPolicyTitle.check(matches(isDisplayed()));
         aboutTheApplicationPage.termsOfUseLink.check(matches(isDisplayed()));

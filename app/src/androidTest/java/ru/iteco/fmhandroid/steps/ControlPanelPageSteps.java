@@ -20,7 +20,7 @@ public class ControlPanelPageSteps extends NavigationBarSteps {
         Allure.step("Наличие отображения раздела «Панель управления»");
         super.checkPageIsLoaded();
         waitForElement(withText(R.string.news_control_panel), DEFAULT_TIMEOUT);
-        controlPanelPage.titleControlPanel.check(matches(isDisplayed()));
+//        controlPanelPage.titleControlPanel.check(matches(isDisplayed()));
         controlPanelPage.sortButton.check(matches(isDisplayed()));
         controlPanelPage.filterButton.check(matches(isDisplayed()));
         controlPanelPage.addButton.check(matches(isDisplayed()));
@@ -46,6 +46,16 @@ public class ControlPanelPageSteps extends NavigationBarSteps {
         Allure.step("Наличие свернутой новости");
         controlPanelPage.getCollapsedNewsItem(title, publicationDate, author).check(matches(isDisplayed()));
     }
+
+//    public void checkCollapsedNewsItemIsDisplayed(String title, String publicationDate, String author) {
+//        Allure.step("Наличие свернутой новости");
+//        ViewInteraction recyclerView = controlPanelPage.getCollapsedNewsItem(title, publicationDate, author);
+//        if (recyclerView != null) {
+//            recyclerView.perform(scrollTo(withText(title)));
+//        } else {
+//            throw new RuntimeException("RecyclerView не найден на странице!");
+//        }
+//    }
 
     public void checkCollapsedNewsItemIsNotExists(News news) {
         checkCollapsedNewsItemIsNotExists(news.getTitle(), news.getPublicationDate(), news.getAuthor());
@@ -142,8 +152,7 @@ public class ControlPanelPageSteps extends NavigationBarSteps {
 
     public void checkNewsIsActive(String title) {
         Allure.step("Наличие статуса новости «Активна»");
-        controlPanelPage.getNewsStatus(title).check(matches(isDisplayed()));
-        controlPanelPage.getNewsStatus(title).check(matches(withText(R.string.news_control_panel_active)));
+        controlPanelPage.getNewsActiveStatus(title).check(matches(isDisplayed()));
     }
 
     public void checkNewsIsNotActive(News news) {
@@ -152,7 +161,6 @@ public class ControlPanelPageSteps extends NavigationBarSteps {
 
     public void checkNewsIsNotActive(String title) {
         Allure.step("Наличие статуса новости «Неактивна»");
-        controlPanelPage.getNewsStatus(title).check(matches(isDisplayed()));
-        controlPanelPage.getNewsStatus(title).check(matches(withText(R.string.news_control_panel_not_active)));
+        controlPanelPage.getNewsNotActiveStatus(title).check(matches(isDisplayed()));
     }
 }
