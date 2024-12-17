@@ -1,25 +1,18 @@
 package ru.iteco.fmhandroid.tests.hospis;
 
 import static ru.iteco.fmhandroid.testdata.Quote.QUOTE;
-import static ru.iteco.fmhandroid.testdata.User.REGISTERED_USER;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
-import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.Feature;
 import io.qameta.allure.kotlin.junit4.DisplayName;
+import ru.iteco.fmhandroid.utils.TestRuleClass;
 
-import ru.iteco.fmhandroid.tests.FirstTest;
-
-@RunWith(AllureAndroidJUnit4.class)
 @Feature(value = "Раздел «Цитаты»")
-public class QuotesPageTest extends FirstTest {
+public class QuotesPageTest extends TestRuleClass {
     @Before
     public void beforeEach() {
-        loginPageSteps.login(REGISTERED_USER);
-        mainPageSteps.checkPageIsLoaded();
         mainPageSteps.goToQuotes();
         quotesPageSteps.checkPageIsLoaded();
     }

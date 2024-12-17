@@ -1,4 +1,6 @@
-package ru.iteco.fmhandroid.tests;
+package ru.iteco.fmhandroid.utils;
+
+import static ru.iteco.fmhandroid.testdata.User.REGISTERED_USER;
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
@@ -7,6 +9,7 @@ import org.junit.Rule;
 import org.junit.runner.RunWith;
 
 import io.qameta.allure.android.runners.AllureAndroidJUnit4;
+
 import ru.iteco.fmhandroid.steps.AboutTheApplicationPageSteps;
 import ru.iteco.fmhandroid.steps.ControlPanelPageSteps;
 import ru.iteco.fmhandroid.steps.CreateAndEditNewsPageSteps;
@@ -18,7 +21,7 @@ import ru.iteco.fmhandroid.steps.QuotesPageSteps;
 import ru.iteco.fmhandroid.ui.AppActivity;
 
 @RunWith(AllureAndroidJUnit4.class)
-public class FirstTest {
+public class TestRuleClass {
 
     protected static AboutTheApplicationPageSteps aboutTheApplicationPageSteps = new AboutTheApplicationPageSteps();
     protected static ControlPanelPageSteps controlPanelPageSteps = new ControlPanelPageSteps();
@@ -41,6 +44,8 @@ public class FirstTest {
         } catch (Exception e) {
             mainPageSteps.logOut();
             loginPageSteps.checkPageIsLoaded();
+            loginPageSteps.login(REGISTERED_USER);
+            mainPageSteps.checkPageIsLoaded();
         }
     }
 }

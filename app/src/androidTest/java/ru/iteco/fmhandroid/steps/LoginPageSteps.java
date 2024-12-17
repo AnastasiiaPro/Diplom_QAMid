@@ -48,6 +48,4 @@ public class LoginPageSteps extends FirstSteps {
         field.perform(click());
         field.perform(replaceText(text));
     }
-
-
 }
