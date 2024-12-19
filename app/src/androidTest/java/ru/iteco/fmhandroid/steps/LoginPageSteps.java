@@ -4,14 +4,11 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static ru.iteco.fmhandroid.utils.CustomMatchers.waitForElement;
 
 import androidx.test.espresso.ViewInteraction;
 
 import io.qameta.allure.kotlin.Allure;
-import ru.iteco.fmhandroid.EspressoIdlingResources;
-import ru.iteco.fmhandroid.R;
+
 import ru.iteco.fmhandroid.pages.LoginPage;
 import ru.iteco.fmhandroid.testdata.User;
 
@@ -21,8 +18,7 @@ public class LoginPageSteps {
 
     public void checkPageIsLoaded() {
         Allure.step("Отображение страницы авторизации");
-//        waitForElement(withText(R.string.authorization), 4000);
-//        loginPage.titleAuthorization.check(matches(isDisplayed()));
+        loginPage.titleAuthorization.check(matches(isDisplayed()));
         loginPage.loginField.check(matches(isDisplayed()));
         loginPage.passwordField.check(matches(isDisplayed()));
         loginPage.signInButton.check(matches(isDisplayed()));

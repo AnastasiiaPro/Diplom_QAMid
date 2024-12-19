@@ -4,12 +4,8 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static ru.iteco.fmhandroid.utils.CustomMatchers.waitForElement;
 
 import io.qameta.allure.kotlin.Allure;
-import ru.iteco.fmhandroid.EspressoIdlingResources;
-import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.pages.FiltersPage;
 
 public class FiltersPageSteps {
@@ -17,8 +13,7 @@ public class FiltersPageSteps {
     private final FiltersPage filtersPage = new FiltersPage();
 
     private void checkPageIsLoaded() {
-//        waitForElement(withText(R.string.filter_news), 4000);
-//        filtersPage.titleFilter.check(matches(isDisplayed()));
+        filtersPage.titleFilter.check(matches(isDisplayed()));
         filtersPage.categoryField.check(matches(isDisplayed()));
         filtersPage.startDateField.check(matches(isDisplayed()));
         filtersPage.endDateField.check(matches(isDisplayed()));

@@ -4,12 +4,9 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static ru.iteco.fmhandroid.utils.CustomMatchers.waitForElement;
 
 import io.qameta.allure.kotlin.Allure;
-import ru.iteco.fmhandroid.EspressoIdlingResources;
-import ru.iteco.fmhandroid.R;
+
 import ru.iteco.fmhandroid.pages.NewsPage;
 import ru.iteco.fmhandroid.testdata.News;
 
@@ -20,8 +17,7 @@ public class NewsPageSteps extends NavigationBarSteps {
     public void checkPageIsLoaded() {
         Allure.step("Отображение раздела «Новости»");
         super.checkPageIsLoaded();
-//        waitForElement(withText(R.string.news), 4000);
-//        newsPage.titleNews.check(matches(isDisplayed()));
+        newsPage.titleNews.check(matches(isDisplayed()));
         newsPage.filterButton.check(matches(isDisplayed()));
         newsPage.sortButton.check(matches(isDisplayed()));
         newsPage.editButton.check(matches(isDisplayed()));

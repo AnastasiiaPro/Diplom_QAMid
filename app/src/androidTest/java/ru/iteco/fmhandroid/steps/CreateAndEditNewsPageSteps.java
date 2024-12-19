@@ -4,12 +4,9 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static ru.iteco.fmhandroid.utils.CustomMatchers.waitForElement;
 
 import io.qameta.allure.kotlin.Allure;
-import ru.iteco.fmhandroid.EspressoIdlingResources;
-import ru.iteco.fmhandroid.R;
+
 import ru.iteco.fmhandroid.pages.CreateAndEditNewsPage;
 import ru.iteco.fmhandroid.testdata.News;
 
@@ -19,8 +16,7 @@ public class CreateAndEditNewsPageSteps {
     private final CreateAndEditNewsPage createAndEditNewsPage = new CreateAndEditNewsPage();
 
     public void checkPageIsLoaded() {
-//        waitForElement(withText(R.string.news), 4000);
-//        createAndEditNewsPage.newsTitle.check(matches(isDisplayed()));
+        createAndEditNewsPage.newsTitle.check(matches(isDisplayed()));
         createAndEditNewsPage.categoryField.check(matches(isDisplayed()));
         createAndEditNewsPage.titleField.check(matches(isDisplayed()));
         createAndEditNewsPage.publicationDateField.check(matches(isDisplayed()));

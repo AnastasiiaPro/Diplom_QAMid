@@ -3,9 +3,6 @@ package ru.iteco.fmhandroid.steps;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-
-import static ru.iteco.fmhandroid.utils.CustomMatchers.waitForElement;
 
 import io.qameta.allure.kotlin.Allure;
 import ru.iteco.fmhandroid.EspressoIdlingResources;
@@ -18,10 +15,9 @@ public class AboutTheApplicationPageSteps  {
 
     public void checkPageIsLoaded() {
         Allure.step("Отображение раздела «О приложении»");
-//        waitForElement(withId(R.id.about_version_title_text_view), 4000);
         aboutTheApplicationPage.backButton.check(matches(isDisplayed()));
         aboutTheApplicationPage.logo.check(matches(isDisplayed()));
-//        aboutTheApplicationPage.version.check(matches(isDisplayed()));
+        aboutTheApplicationPage.version.check(matches(isDisplayed()));
         aboutTheApplicationPage.privacyPolicyLink.check(matches(isDisplayed()));
         aboutTheApplicationPage.privacyPolicyTitle.check(matches(isDisplayed()));
         aboutTheApplicationPage.termsOfUseLink.check(matches(isDisplayed()));

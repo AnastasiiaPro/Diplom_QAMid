@@ -4,13 +4,9 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isClickable;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static ru.iteco.fmhandroid.utils.CustomMatchers.waitForElement;
 
 import io.qameta.allure.kotlin.Allure;
-import ru.iteco.fmhandroid.EspressoIdlingResources;
-import ru.iteco.fmhandroid.R;
+
 import ru.iteco.fmhandroid.pages.NavigationBar;
 
 
@@ -20,9 +16,8 @@ public class NavigationBarSteps {
 
     public void checkPageIsLoaded() {
         Allure.step("Отображение элементов панели навигации");
-//        waitForElement(withId(R.id.trademark_image_view), 4000);
         navigationBar.menuButton.check(matches(isDisplayed()));
-//        navigationBar.logo.check(matches(isDisplayed()));
+        navigationBar.logo.check(matches(isDisplayed()));
         navigationBar.ourMissionButton.check(matches(isDisplayed()));
         navigationBar.logoutButton.check(matches(isDisplayed()));
     }
@@ -30,8 +25,7 @@ public class NavigationBarSteps {
     public void logOut() {
         Allure.step("Выйти из учетной записи");
         navigationBar.logoutButton.perform(click());
-//        waitForElement(withText(R.string.log_out), 4000);
-//        navigationBar.logoutMenuItem.check(matches(isDisplayed()));
+        navigationBar.logoutMenuItem.check(matches(isDisplayed()));
         navigationBar.logoutMenuItem.perform(click());
     }
 
