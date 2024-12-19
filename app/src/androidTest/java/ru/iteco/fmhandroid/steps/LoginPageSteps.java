@@ -10,17 +10,18 @@ import static ru.iteco.fmhandroid.utils.CustomMatchers.waitForElement;
 import androidx.test.espresso.ViewInteraction;
 
 import io.qameta.allure.kotlin.Allure;
+import ru.iteco.fmhandroid.EspressoIdlingResources;
 import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.pages.LoginPage;
 import ru.iteco.fmhandroid.testdata.User;
 
-public class LoginPageSteps extends FirstSteps {
+public class LoginPageSteps {
 
     private final LoginPage loginPage = new LoginPage();
 
     public void checkPageIsLoaded() {
         Allure.step("Отображение страницы авторизации");
-        waitForElement(withText(R.string.authorization), DEFAULT_TIMEOUT);
+//        waitForElement(withText(R.string.authorization), 4000);
 //        loginPage.titleAuthorization.check(matches(isDisplayed()));
         loginPage.loginField.check(matches(isDisplayed()));
         loginPage.passwordField.check(matches(isDisplayed()));

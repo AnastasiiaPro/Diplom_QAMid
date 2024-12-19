@@ -6,6 +6,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import ru.iteco.fmhandroid.BuildConfig
+import ru.iteco.fmhandroid.EspressoIdlingResources
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.databinding.FragmentAboutBinding
 
@@ -21,6 +22,7 @@ class AboutFragment : Fragment(R.layout.fragment_about) {
             authorizationImageButton.visibility = View.GONE
             mainMenuImageButton.visibility = View.GONE
             aboutBackImageButton.visibility = View.VISIBLE
+            EspressoIdlingResources.decrement()//Декремент переход
         }
         binding.containerCustomAppBarIncludeOnFragmentAbout.aboutBackImageButton.setOnClickListener {
             findNavController().navigateUp()

@@ -8,6 +8,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static ru.iteco.fmhandroid.utils.CustomMatchers.waitForElement;
 
 import io.qameta.allure.kotlin.Allure;
+import ru.iteco.fmhandroid.EspressoIdlingResources;
 import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.pages.MainPage;
 
@@ -18,7 +19,7 @@ public class MainPageSteps extends NavigationBarSteps {
     public void checkPageIsLoaded() {
         Allure.step("Отображение раздела «Главная»");
         super.checkPageIsLoaded();
-        waitForElement(withText(R.string.news), DEFAULT_TIMEOUT);
+//        waitForElement(withText(R.string.news), 4000);
 //        mainPage.titleNews.check(matches(isDisplayed()));
         mainPage.allNewsButton.check(matches(isDisplayed()));
 //        mainPage.newsList.check(matches(isDisplayed()));

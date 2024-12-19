@@ -1,15 +1,14 @@
-package ru.iteco.fmhandroid.utils;
+package ru.iteco.fmhandroid.tests;
 
 import static ru.iteco.fmhandroid.testdata.User.REGISTERED_USER;
 
+import androidx.test.espresso.IdlingRegistry;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
 import org.junit.Before;
 import org.junit.Rule;
-import org.junit.runner.RunWith;
 
-import io.qameta.allure.android.runners.AllureAndroidJUnit4;
-
+import ru.iteco.fmhandroid.EspressoIdlingResources;
 import ru.iteco.fmhandroid.steps.AboutTheApplicationPageSteps;
 import ru.iteco.fmhandroid.steps.ControlPanelPageSteps;
 import ru.iteco.fmhandroid.steps.CreateAndEditNewsPageSteps;
@@ -20,7 +19,6 @@ import ru.iteco.fmhandroid.steps.NewsPageSteps;
 import ru.iteco.fmhandroid.steps.QuotesPageSteps;
 import ru.iteco.fmhandroid.ui.AppActivity;
 
-@RunWith(AllureAndroidJUnit4.class)
 public class TestRuleClass {
 
     protected static AboutTheApplicationPageSteps aboutTheApplicationPageSteps = new AboutTheApplicationPageSteps();
@@ -38,9 +36,11 @@ public class TestRuleClass {
 
     @Before
     public void setUp() {
-        loginPageSteps.waitForAppToLoad();
+        IdlingRegistry.getInstance().register(EspressoIdlingResources.idlingResource);
         try {
             loginPageSteps.checkPageIsLoaded();
+            loginPageSteps.login(REGISTERED_USER);
+            mainPageSteps.checkPageIsLoaded();
         } catch (Exception e) {
             mainPageSteps.logOut();
             loginPageSteps.checkPageIsLoaded();
@@ -48,4 +48,8 @@ public class TestRuleClass {
             mainPageSteps.checkPageIsLoaded();
         }
     }
+    public void tearDown () {
+        IdlingRegistry.getInstance().unregister(EspressoIdlingResources.idlingResource);
+    }
 }
+

@@ -9,17 +9,18 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static ru.iteco.fmhandroid.utils.CustomMatchers.waitForElement;
 
 import io.qameta.allure.kotlin.Allure;
+import ru.iteco.fmhandroid.EspressoIdlingResources;
 import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.pages.NavigationBar;
 
 
-public class NavigationBarSteps extends FirstSteps {
+public class NavigationBarSteps {
 
     private final NavigationBar navigationBar = new NavigationBar();
 
     public void checkPageIsLoaded() {
         Allure.step("Отображение элементов панели навигации");
-        waitForElement(withId(R.id.trademark_image_view), DEFAULT_TIMEOUT);
+//        waitForElement(withId(R.id.trademark_image_view), 4000);
         navigationBar.menuButton.check(matches(isDisplayed()));
 //        navigationBar.logo.check(matches(isDisplayed()));
         navigationBar.ourMissionButton.check(matches(isDisplayed()));
@@ -29,7 +30,7 @@ public class NavigationBarSteps extends FirstSteps {
     public void logOut() {
         Allure.step("Выйти из учетной записи");
         navigationBar.logoutButton.perform(click());
-        waitForElement(withText(R.string.log_out), DEFAULT_TIMEOUT);
+//        waitForElement(withText(R.string.log_out), 4000);
 //        navigationBar.logoutMenuItem.check(matches(isDisplayed()));
         navigationBar.logoutMenuItem.perform(click());
     }

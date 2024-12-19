@@ -9,6 +9,7 @@ import static org.hamcrest.Matchers.not;
 import static ru.iteco.fmhandroid.utils.CustomMatchers.waitForElement;
 
 import io.qameta.allure.kotlin.Allure;
+import ru.iteco.fmhandroid.EspressoIdlingResources;
 import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.pages.QuotesPage;
 import ru.iteco.fmhandroid.testdata.Quote;
@@ -20,7 +21,7 @@ public class QuotesPageSteps extends NavigationBarSteps {
     public void checkPageIsLoaded() {
         Allure.step("Отображение страницы «Цитаты»");
         super.checkPageIsLoaded();
-        waitForElement(withId(R.id.our_mission_title_text_view), DEFAULT_TIMEOUT);
+//        waitForElement(withId(R.id.our_mission_title_text_view), 4000);
 //        quotesPage.titleQuotes.check(matches(isDisplayed()));
         quotesPage.listOfItems.check(matches(isDisplayed()));
     }

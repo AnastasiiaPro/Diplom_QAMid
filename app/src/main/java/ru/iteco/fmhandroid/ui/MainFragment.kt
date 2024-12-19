@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
+import ru.iteco.fmhandroid.EspressoIdlingResources
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.adapter.NewsListAdapter
 import ru.iteco.fmhandroid.databinding.FragmentMainBinding
@@ -42,6 +43,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     @SuppressLint("Recycle")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        EspressoIdlingResources.decrement()
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentMainBinding.bind(view)
@@ -57,6 +59,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             mainMenu.show()
         }
         mainMenu.setOnMenuItemClickListener {
+            EspressoIdlingResources.increment()
             when (it.itemId) {
 
                 R.id.menu_item_news -> {

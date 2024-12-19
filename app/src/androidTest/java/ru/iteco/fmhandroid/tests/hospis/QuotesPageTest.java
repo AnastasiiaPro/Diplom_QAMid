@@ -4,11 +4,14 @@ import static ru.iteco.fmhandroid.testdata.Quote.QUOTE;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.Feature;
 import io.qameta.allure.kotlin.junit4.DisplayName;
-import ru.iteco.fmhandroid.utils.TestRuleClass;
+import ru.iteco.fmhandroid.tests.TestRuleClass;
 
+@RunWith(AllureAndroidJUnit4.class)
 @Feature(value = "Раздел «Цитаты»")
 public class QuotesPageTest extends TestRuleClass {
     @Before

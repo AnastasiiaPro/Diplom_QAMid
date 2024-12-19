@@ -8,6 +8,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static ru.iteco.fmhandroid.utils.CustomMatchers.waitForElement;
 
 import io.qameta.allure.kotlin.Allure;
+import ru.iteco.fmhandroid.EspressoIdlingResources;
 import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.pages.ControlPanelPage;
 import ru.iteco.fmhandroid.testdata.News;
@@ -19,7 +20,7 @@ public class ControlPanelPageSteps extends NavigationBarSteps {
     public void checkPageIsLoaded() {
         Allure.step("Наличие отображения раздела «Панель управления»");
         super.checkPageIsLoaded();
-        waitForElement(withText(R.string.news_control_panel), DEFAULT_TIMEOUT);
+//        waitForElement(withText(R.string.news_control_panel), 4000);
 //        controlPanelPage.titleControlPanel.check(matches(isDisplayed()));
         controlPanelPage.sortButton.check(matches(isDisplayed()));
         controlPanelPage.filterButton.check(matches(isDisplayed()));

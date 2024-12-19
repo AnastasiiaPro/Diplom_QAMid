@@ -8,16 +8,17 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static ru.iteco.fmhandroid.utils.CustomMatchers.waitForElement;
 
 import io.qameta.allure.kotlin.Allure;
+import ru.iteco.fmhandroid.EspressoIdlingResources;
 import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.pages.AboutTheApplicationPage;
 
-public class AboutTheApplicationPageSteps extends FirstSteps {
+public class AboutTheApplicationPageSteps  {
 
     private final AboutTheApplicationPage aboutTheApplicationPage = new AboutTheApplicationPage();
 
     public void checkPageIsLoaded() {
         Allure.step("Отображение раздела «О приложении»");
-        waitForElement(withId(R.id.about_version_title_text_view), DEFAULT_TIMEOUT);
+//        waitForElement(withId(R.id.about_version_title_text_view), 4000);
         aboutTheApplicationPage.backButton.check(matches(isDisplayed()));
         aboutTheApplicationPage.logo.check(matches(isDisplayed()));
 //        aboutTheApplicationPage.version.check(matches(isDisplayed()));
@@ -26,7 +27,6 @@ public class AboutTheApplicationPageSteps extends FirstSteps {
         aboutTheApplicationPage.termsOfUseLink.check(matches(isDisplayed()));
         aboutTheApplicationPage.termsOfUseTitle.check(matches(isDisplayed()));
         aboutTheApplicationPage.companyInfo.check(matches(isDisplayed()));
-
     }
 
     public void clickBackButton() {

@@ -5,6 +5,7 @@ import static ru.iteco.fmhandroid.testdata.User.UNREGISTERED_USER;
 import static ru.iteco.fmhandroid.testdata.User.USER_WITHOUT_LOGIN;
 import static ru.iteco.fmhandroid.testdata.User.USER_WITHOUT_PASSWORD;
 
+import androidx.test.espresso.IdlingRegistry;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
 import org.junit.Before;
@@ -16,6 +17,7 @@ import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.Feature;
 import io.qameta.allure.kotlin.junit4.DisplayName;
 
+import ru.iteco.fmhandroid.EspressoIdlingResources;
 import ru.iteco.fmhandroid.steps.LoginPageSteps;
 import ru.iteco.fmhandroid.steps.MainPageSteps;
 import ru.iteco.fmhandroid.ui.AppActivity;
@@ -32,13 +34,20 @@ public class LoginPageTest {
 
     @Before
     public void setUp() {
-        loginPageSteps.waitForAppToLoad();
+        IdlingRegistry.getInstance().register(EspressoIdlingResources.idlingResource);
         try {
             loginPageSteps.checkPageIsLoaded();
+
         } catch (Exception e) {
             mainPageSteps.logOut();
             loginPageSteps.checkPageIsLoaded();
         }
+    }
+    public void tearDown () {
+        IdlingRegistry.getInstance().unregister(EspressoIdlingResources.idlingResource);
+        loginPageSteps.checkPageIsLoaded();
+        mainPageSteps.logOut();
+        loginPageSteps.checkPageIsLoaded();
     }
 
     @Test

@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import ru.iteco.fmhandroid.EspressoIdlingResources
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.databinding.FragmentAuthBinding
 import ru.iteco.fmhandroid.viewmodel.AuthViewModel
@@ -21,8 +22,8 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
     val viewModel: AuthViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+//        EspressoIdlingResources.increment()
         super.onCreate(savedInstanceState)
-
         lifecycleScope.launch {
             viewModel.loginEvent.collectLatest {
                 findNavController().navigate(R.id.action_authFragment_to_mainFragment)
@@ -35,6 +36,7 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
                     R.string.error,
                     Toast.LENGTH_SHORT
                 ).show()
+                EspressoIdlingResources.decrement()
             }
         }
         lifecycleScope.launch {
@@ -44,6 +46,7 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
                     R.string.wrong_login_or_password,
                     Toast.LENGTH_SHORT
                 ).show()
+                EspressoIdlingResources.decrement()
             }
         }
         lifecycleScope.launch {
@@ -53,15 +56,14 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
                     R.string.lost_network_connection,
                     Toast.LENGTH_LONG
                 ).show()
+                EspressoIdlingResources.decrement()
             }
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding = FragmentAuthBinding.bind(view)
-
         with(binding.containerCustomAppBarIncludeOnFragmentMain) {
             mainMenuImageButton.visibility = View.GONE
             authorizationImageButton.visibility = View.GONE
@@ -75,14 +77,15 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
                     R.string.empty_login_or_password,
                     Toast.LENGTH_SHORT
                 ).show()
+                EspressoIdlingResources.decrement()
             } else {
+                EspressoIdlingResources.increment()
                 viewModel.login(
                     binding.loginTextInputLayout.editText?.text.toString().trim(),
                     binding.passwordTextInputLayout.editText?.text.toString().trim()
                 )
             }
         }
-
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             activity?.finishAffinity()
         }

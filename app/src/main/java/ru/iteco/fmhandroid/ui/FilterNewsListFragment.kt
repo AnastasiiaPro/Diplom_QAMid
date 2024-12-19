@@ -15,6 +15,7 @@ import com.google.android.material.textfield.TextInputEditText
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import ru.iteco.fmhandroid.EspressoIdlingResources
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.databinding.FragmentFilterNewsBinding
 import ru.iteco.fmhandroid.dto.NewsFilterArgs
@@ -171,6 +172,7 @@ class FilterNewsListFragment : Fragment(R.layout.fragment_filter_news) {
         }
 
         binding.cancelButton.setOnClickListener {
+            EspressoIdlingResources.increment()//Кнопка отмена. Переход в раздел News Control Panel.
             findNavController().navigateUp()
         }
     }

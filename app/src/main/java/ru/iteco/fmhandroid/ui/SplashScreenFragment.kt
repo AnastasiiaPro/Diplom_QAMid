@@ -13,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import ru.iteco.fmhandroid.EspressoIdlingResources
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.api.UserApi
 import ru.iteco.fmhandroid.auth.AppAuth
@@ -155,6 +156,7 @@ class SplashScreenFragment : Fragment(R.layout.fragment_splash_screen) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        EspressoIdlingResources.increment()
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentSplashScreenBinding.bind(view)
@@ -234,6 +236,7 @@ class SplashScreenFragment : Fragment(R.layout.fragment_splash_screen) {
         lifecycleScope.launch {
             delay(3_000)
             authViewModel.authorization()
+            EspressoIdlingResources.decrement()
         }
     }
 

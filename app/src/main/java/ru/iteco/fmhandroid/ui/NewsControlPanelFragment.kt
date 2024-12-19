@@ -17,6 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import ru.iteco.fmhandroid.EspressoIdlingResources
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.adapter.NewsControlPanelListAdapter
 import ru.iteco.fmhandroid.adapter.NewsOnInteractionListener
@@ -45,6 +46,7 @@ class NewsControlPanelFragment : Fragment(R.layout.fragment_news_control_panel) 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        EspressoIdlingResources.decrement()
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentNewsControlPanelBinding.bind(view)
 
@@ -89,7 +91,9 @@ class NewsControlPanelFragment : Fragment(R.layout.fragment_news_control_panel) 
         authorizationMenu.inflate(R.menu.authorization)
 
         binding.containerCustomAppBarIncludeOnFragmentNewsControlPanel.authorizationImageButton.setOnClickListener {
+            EspressoIdlingResources.increment()
             authorizationMenu.show()
+            EspressoIdlingResources.decrement()
         }
 
         authorizationMenu.setOnMenuItemClickListener {
@@ -119,6 +123,7 @@ class NewsControlPanelFragment : Fragment(R.layout.fragment_news_control_panel) 
             }
 
             override fun onRemove(newItemWithCategory: NewsWithCategory) {
+                EspressoIdlingResources.increment()
                 dialog.setMessage(R.string.irrevocable_deletion)
                     .setPositiveButton(R.string.fragment_positive_button) { alertDialog, _ ->
                         newItemWithCategory.newsItem.id?.let { viewModel.remove(it) }
@@ -129,6 +134,7 @@ class NewsControlPanelFragment : Fragment(R.layout.fragment_news_control_panel) 
                     }
                     .create()
                     .show()
+                EspressoIdlingResources.decrement()
             }
         })
 

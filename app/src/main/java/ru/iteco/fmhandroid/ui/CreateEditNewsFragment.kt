@@ -2,10 +2,12 @@ package ru.iteco.fmhandroid.ui
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -17,6 +19,7 @@ import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import ru.iteco.fmhandroid.EspressoIdlingResources
 import ru.iteco.fmhandroid.R
 import ru.iteco.fmhandroid.databinding.FragmentCreateEditNewsBinding
 import ru.iteco.fmhandroid.dto.News
@@ -47,11 +50,13 @@ class CreateEditNewsFragment : Fragment(R.layout.fragment_create_edit_news) {
         lifecycleScope.launch {
             viewModel.saveNewsItemExceptionEvent.collect {
                 showErrorToast(R.string.error_saving)
+                EspressoIdlingResources.decrement()
             }
         }
         lifecycleScope.launch {
             viewModel.editNewsItemExceptionEvent.collect {
                 showErrorToast(R.string.error_saving)
+                EspressoIdlingResources.decrement()
             }
         }
         lifecycleScope.launch {
@@ -66,6 +71,7 @@ class CreateEditNewsFragment : Fragment(R.layout.fragment_create_edit_news) {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentCreateEditNewsBinding.bind(view)
@@ -139,6 +145,7 @@ class CreateEditNewsFragment : Fragment(R.layout.fragment_create_edit_news) {
                 dialog.setMessage(R.string.cancellation)
                     .setPositiveButton(R.string.fragment_positive_button) { alertDialog, _ ->
                         alertDialog.dismiss()
+                        EspressoIdlingResources.increment()
                         findNavController().navigateUp()
                     }
                     .setNegativeButton(R.string.cancel) { alertDialog, _ ->
@@ -261,7 +268,9 @@ class CreateEditNewsFragment : Fragment(R.layout.fragment_create_edit_news) {
         ).show()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun fillNewsItem() {
+        EspressoIdlingResources.increment()
         with(binding) {
             val news = args.newsItemArg
             if (news != null) {
